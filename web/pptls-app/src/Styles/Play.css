@@ -7,7 +7,10 @@
 }
 
 .containerBtn{
- 
+    width:30vmin;
+    height: 5vmin;
+
+
     font-size: 100%;
     margin-left:auto;
 
