@@ -2,7 +2,11 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { useHistory} from 'react-router-dom';
-
+import piedra from './Static/piedra.png'
+import papel from './Static/papel.png'
+import tijera from './Static/tijera.png'
+import lagarto from './Static/lagarto.png'
+import spock from './Static/spock.png'
 import {Button } from 'react-bootstrap';
 
 function App() {
@@ -16,23 +20,23 @@ function App() {
             <div className="row">
             <div className="column">
                  <h1 className="title2"> P </h1>
-                 <img src={logo}/>
+                 <img src={piedra}/>
             </div>
             <div class="column">
                  <h1 className="title2"> P </h1>
-                 <img src={logo} />
+                 <img src={papel} />
             </div>
             <div class="column">
                  <h1 className="title2"> T </h1>
-                 <img src={logo}  />
+                 <img src={tijera}  />
             </div>
             <div class="column">
                  <h1 className="title2"> L </h1>
-                 <img src={logo} />
+                 <img src={lagarto} />
             </div>
             <div class="column">
                  <h1 className="title2"> S </h1>
-                 <img src={logo} />
+                 <img src={spock} />
             </div>
           </div>
           

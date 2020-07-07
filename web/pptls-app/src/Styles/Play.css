@@ -1,0 +1,31 @@
+.btnWeapon{
+
+
+}
+.container{
+    display: flex;
+}
+
+.containerBtn{
+ 
+    font-size: 100%;
+    margin-left:auto;
+
+
+}
+
+.batalla{
+
+}
+
+.jug2{
+    display: flex;
+    align-items: left;
+
+}
+
+
+.jug1{
+    display: flex;
+    align-items: right;
+}
