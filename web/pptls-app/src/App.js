@@ -20,23 +20,23 @@ function App() {
             <div className="row">
             <div className="column">
                  <h1 className="title2"> P </h1>
-                 <img className="App-logo" src={piedra}/>
+                 <img src={piedra}/>
             </div>
             <div class="column">
                  <h1 className="title2"> P </h1>
-                 <img className="App-logo"src={papel} />
+                 <img src={papel} />
             </div>
             <div class="column">
                  <h1 className="title2"> T </h1>
-                 <img className="App-logo"src={tijera}  />
+                 <img src={tijera}  />
             </div>
             <div class="column">
                  <h1 className="title2"> L </h1>
-                 <img className="App-logo" src={lagarto} />
+                 <img src={lagarto} />
             </div>
             <div class="column">
                  <h1 className="title2"> S </h1>
-                 <img className="App-logo" src={spock} />
+                 <img src={spock} />
             </div>
           </div>
           
