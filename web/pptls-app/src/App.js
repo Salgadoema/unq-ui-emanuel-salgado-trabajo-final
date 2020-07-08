@@ -20,7 +20,6 @@ function App() {
             <div className="row">
             <div className="column">
                  <h1 className="title2"> P </h1>
-<<<<<<< HEAD
                  <img className="App-logo" src={piedra}/>
             </div>
             <div class="column">
@@ -38,25 +37,6 @@ function App() {
             <div class="column">
                  <h1 className="title2"> S </h1>
                  <img className="App-logo" src={spock} />
-=======
-                 <img src={piedra}/>
-            </div>
-            <div class="column">
-                 <h1 className="title2"> P </h1>
-                 <img src={papel} />
-            </div>
-            <div class="column">
-                 <h1 className="title2"> T </h1>
-                 <img src={tijera}  />
-            </div>
-            <div class="column">
-                 <h1 className="title2"> L </h1>
-                 <img src={lagarto} />
-            </div>
-            <div class="column">
-                 <h1 className="title2"> S </h1>
-                 <img src={spock} />
->>>>>>> e0dff4f54e48a937b34939871df2502f3e2dd3ad
             </div>
           </div>
           
