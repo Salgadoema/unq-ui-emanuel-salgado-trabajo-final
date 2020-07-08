@@ -43,10 +43,11 @@
 }
 .App-logo{
   display: block;
-  height: 10vw;
+  height: auto;
   width: 10vw;
-  margin-top: 8px;
+
   align-items: center;
+  
 
 }
 .column {

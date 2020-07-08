@@ -1,24 +1,39 @@
-.btnWeapon{
-
+.batalla{
+    display: grid;
+    grid-template-columns: repeat(auto, 2px);
+    height: auto;
 
 }
 .container{
-    display: flex;
-}
-
-.batalla{
-    display:grid;
-    grid-template-columns: repeat(auto-fit, 200px);
-}
-
-.jug2{
-    display: flex;
-    align-items: left;
-
+    position: relative;
+    text-align: center;
+    height: auto;
 }
 
 
-.jug1{
-    display: flex;
-    align-items: right;
+.responsive{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+
+   
 }
+.imgArma{
+ width: 10vw;
+ height: auto;
+ 
+}
+.imgArma:hover{
+    width: 10vw;
+    height: auto;
+    cursor: pointer;
+    width: 105%;
+    
+   }
+
+.imgBatalla{
+    justify-content: 'center';
+    align-items: 'center';
+    width: 10vw;
+    height: auto;
+   margin-left: 45vw;
+   }
