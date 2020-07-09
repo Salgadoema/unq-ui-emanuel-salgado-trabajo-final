@@ -5,17 +5,33 @@
 
 }
 .container{
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width:100%;
+    height: 100%;
     text-align: center;
-    height: auto;
+
 }
 
-
+.puntaje1{
+    margin-right: 10vw;
+}
+.puntaje2{
+    margin-left: 10vw;
+}
 .responsive{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-
-   
+  
+}
+.puntaje{
+    display: 'flex';
+    align-items: 'center';
+    justify-Content: 'center';
+}
+.info{
+    font-size:2vw
 }
 .imgArma{
  width: 10vw;

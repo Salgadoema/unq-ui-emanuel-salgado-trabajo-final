@@ -11,8 +11,10 @@ import {Button } from 'react-bootstrap';
 
 function App() {
   let history = useHistory();
-
-  function toPlay() { history.push("/Play")}
+  
+  function toPlay() {
+    
+     history.push("/Play")}
   
   return (
  
