@@ -13,7 +13,11 @@ import ninguno from '../../Static/ninguno.png'
 import Modal from '../../Components/Modal/Modal'
 
 function Play() {
+  const Title = () => {
+    const [title, setTitle] = useState("Vs");
 
+    return <h1 onClick={() => setTitle("Reiniciar")}>{title}</h1>;
+  }
   const armas = ["piedra", "papel", "tijera", "lagarto", "spock"];
   const [contadorJug1, setContadorJ1] = useState(0)
   const [contadorJug2, setContadorJ2] = useState(0)
@@ -23,7 +27,7 @@ function Play() {
   let myColor = { background: '#0E1717', text: "#FFFFFF" };
   const [statusBtn, setStatusBtn] = useState({ habilitado: true });
   const elegirArmaRandom = () => { return Math.floor(Math.random() * armas.length); }
-
+  var open = false;
 
   function deshabilitarBotones() {
     document.getElementById("myDIV1").style.opacity = "0.5";
@@ -44,6 +48,7 @@ function Play() {
   }
 
   const elegirArma = (arma) => {
+
     deshabilitarBotones();
     if (statusBtn) {
       setStatusBtn(false)
@@ -53,7 +58,7 @@ function Play() {
       setArma({ jugadorUno: armaJ1, jugadorDos: armaJ2, ganador, })
 
     }
-    else { console.log("reinicia el juego") }
+    else { open = true; console.log("reinicia el juego", open) }
 
   }
   const borrarSets = () => {
@@ -61,6 +66,7 @@ function Play() {
     setColor({ colorBackgorund: 'violet' })
     setStatusBtn({ habilitado: true })
     habilitarBotones()
+    funcion()
 
   }
 
@@ -129,6 +135,18 @@ function Play() {
   }
 
 
+  const funcion = () => {
+    if (!open) {
+      console.log("vs", open)
+      document.getElementById("myDIV")
+      return "VS"
+    }
+    else {
+      console.log("reinicar", open)
+      return "reiniciar"
+    }
+  }
+
   return (
 
     <>
@@ -137,34 +155,32 @@ function Play() {
         <div className="batalla">
 
 
-          <h2 className="info"> Jugador uno </h2>
+          <h2 className="info"> {localStorage.getItem('userName')}  {contadorJug1}Pts </h2>
 
           <img className="imgBatalla" src={armasImg[unArma.jugadorUno]} ></img>
 
-          <h1 className="info">VS</h1>
+
           <div className="puntaje">
-            <h1 className="info" > 
-              <h1 className="info" >puntaje:{contadorJug1}
-          <Button className={"modal"} onClick={() => borrarSets()}>reiniciar</Button>
-  Puntaje:{contadorJug2}</h1>
-            </h1>
+
+            <Button className="modal" onClick={() => borrarSets()}>VS</Button>
+
           </div>
 
           <img className="imgBatalla" src={armasImg[unArma.jugadorDos]}></img>
-          <h2 className="info">Jugador dos{armasImg.jugadorDos}</h2>
+          <h2 className="info">Computadora {contadorJug2}{armasImg.jugadorDos}Pts</h2>
         </div>
 
         <div className="containerBtn">
 
           <div className="responsive">
-            <h2 className="info" >Elegi  arma</h2>
+            <h2 className="info" >Elegi tu arma</h2>
 
-            <img id="myDIV1" className="imgArma" src={armasImg[0]} onClick={() => elegirArma(0)}  ></img>
-            <img id="myDIV2" className="imgArma" src={armasImg[1]} onClick={() => elegirArma(1)} ></img>
-            <img id="myDIV3" className="imgArma" src={armasImg[2]} onClick={() => elegirArma(2)} ></img>
-            <img id="myDIV4" className="imgArma" src={armasImg[3]} onClick={() => elegirArma(3)} ></img>
-            <img id="myDIV5" className="imgArma" src={armasImg[4]} onClick={() => elegirArma(4)} ></img>
-            <img id="myDIV6" className="imgArma" src={armasImg[5]} onClick={() => elegirArma(elegirArmaRandom())} ></img>
+            <img id="myDIV1" title="PIEDRA" className="imgArma" src={armasImg[0]} onClick={() => elegirArma(0)}  ></img>
+            <img id="myDIV2" title="PAPEL" className="imgArma" src={armasImg[1]} onClick={() => elegirArma(1)} ></img>
+            <img id="myDIV3" title="TIJERA" className="imgArma" src={armasImg[2]} onClick={() => elegirArma(2)} ></img>
+            <img id="myDIV4" title="LAGARTO" className="imgArma" src={armasImg[3]} onClick={() => elegirArma(3)} ></img>
+            <img id="myDIV5" title="SPOCK" className="imgArma" src={armasImg[4]} onClick={() => elegirArma(4)} ></img>
+            <img id="myDIV6" title="RANDOM" className="imgArma" src={armasImg[5]} onClick={() => elegirArma(elegirArmaRandom())} ></img>
 
           </div>
 

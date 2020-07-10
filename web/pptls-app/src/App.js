@@ -1,4 +1,5 @@
-import React from 'react';
+
+import React, { useState } from "react";
 import logo from './logo.svg';
 import './App.css';
 import { useHistory} from 'react-router-dom';
@@ -8,17 +9,28 @@ import tijera from './Static/tijera.png'
 import lagarto from './Static/lagarto.png'
 import spock from './Static/spock.png'
 import {Button } from 'react-bootstrap';
-
+import Notifications, { notify } from 'react-notify-toast';
 function App() {
   let history = useHistory();
-  
+  const [name, setName]=  useState("");
+
+  const updateName = ev => setName(ev.target.value);
+  let myColor = { background: '#0E1717', text: "#FFFFFF" };
+
   function toPlay() {
-    
-     history.push("/Play")}
+    localStorage.setItem('userName',name);
+    if(localStorage.getItem('userName')===""){
+      notify.show("INGRESA TU NOMBRE", "error", 1000, myColor)}
+    else{
+      
+    history.push("/Play")};
+  }
+
   
   return (
  
     <div className="App">
+        <Notifications />
             <div className="row">
             <div className="column">
                  <h1 className="title2"> P </h1>
@@ -26,11 +38,11 @@ function App() {
             </div>
             <div class="column">
                  <h1 className="title2"> P </h1>
-                 <img className="App-logo"src={papel} />
+                 <img className="App-logo"src={papel}/>
             </div>
             <div class="column">
                  <h1 className="title2"> T </h1>
-                 <img className="App-logo"src={tijera}  />
+                 <img className="App-logo"src={tijera} />
             </div>
             <div class="column">
                  <h1 className="title2"> L </h1>
@@ -38,13 +50,21 @@ function App() {
             </div>
             <div class="column">
                  <h1 className="title2"> S </h1>
-                 <img className="App-logo" src={spock} />
+                 <img className="App-logo" src={spock}/>
             </div>
           </div>
-          
+
           <div class="column">
-         
-          <Button className="btnPlay" onClick={()=>toPlay()} variant="primary">Comenzar</Button>
+         <div>BIENVENIDO AL JUEGO PIEDRA-PAPEL-TIJERA-LAGARTO-SPOCK</div>
+         <div >INGRESA TU NOMBRE: 
+         <input className="inp" type="text" placeholder=" Username" name="uname"
+                  onChange={updateName}
+                  required/>
+                  
+                   <button className="inp" type="button" onClick={()=>toPlay()}  >A JUGAR!!!</button>
+                   <button className="inp" type="button" onClick={()=>toPlay()}  >REGLAS</button>
+                   
+        </div> 
             </div>
     </div>
 
