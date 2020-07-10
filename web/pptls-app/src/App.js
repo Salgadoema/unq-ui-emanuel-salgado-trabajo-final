@@ -25,7 +25,9 @@ function App() {
       
     history.push("/Play")};
   }
-
+  function toRules() {
+     history.push("/Rules");
+  }
   
   return (
  
@@ -61,8 +63,8 @@ function App() {
                   onChange={updateName}
                   required/>
                   
-                   <button className="inp" type="button" onClick={()=>toPlay()}  >A JUGAR!!!</button>
-                   <button className="inp" type="button" onClick={()=>toPlay()}  >REGLAS</button>
+                   <button className="inp1" type="button" onClick={()=>toPlay()}  >A JUGAR!!!</button>
+                   <button className="inp2" type="button" onClick={()=>toRules()}  >REGLAS</button>
                    
         </div> 
             </div>

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Button } from 'react-bootstrap';
 import Notifications, { notify } from 'react-notify-toast';
 import '../../Styles/Play.css';
 import piedra from '../../Static/piedra.png'
@@ -10,24 +9,23 @@ import spock from '../../Static/spock.png'
 import random from '../../Static/randomSelection.gif'
 import ninguno from '../../Static/ninguno.png'
 
-import Modal from '../../Components/Modal/Modal'
 
 function Play() {
-  const Title = () => {
-    const [title, setTitle] = useState("Vs");
 
-    return <h1 onClick={() => setTitle("Reiniciar")}>{title}</h1>;
-  }
   const armas = ["piedra", "papel", "tijera", "lagarto", "spock"];
   const [contadorJug1, setContadorJ1] = useState(0)
   const [contadorJug2, setContadorJ2] = useState(0)
+  const [colorBgndBtn, setColorBtn] = useState({ colorBackgorundBtn: 'violet' });
+  const [shadowBtn, setShadowBtn] = useState('')
   const [colorBgnd, setColor] = useState({ colorBackgorund: 'violet' });
+  const [opacityBtn, setOpacity] = useState('0.1')
+  const [cursorBtn, setCursor] = useState('not-allowed')
   const armasImg = [piedra, papel, tijera, lagarto, spock, random, ninguno]
   const [unArma, setArma] = useState({ jugadorUno: "6", jugadorDos: "5", ganador: "" })
   let myColor = { background: '#0E1717', text: "#FFFFFF" };
   const [statusBtn, setStatusBtn] = useState({ habilitado: true });
   const elegirArmaRandom = () => { return Math.floor(Math.random() * armas.length); }
-  var open = false;
+
 
   function deshabilitarBotones() {
     document.getElementById("myDIV1").style.opacity = "0.5";
@@ -47,6 +45,8 @@ function Play() {
     document.getElementById("myDIV6").style.opacity = "1";
   }
 
+
+
   const elegirArma = (arma) => {
 
     deshabilitarBotones();
@@ -58,15 +58,23 @@ function Play() {
       setArma({ jugadorUno: armaJ1, jugadorDos: armaJ2, ganador, })
 
     }
-    else { open = true; console.log("reinicia el juego", open) }
+    else { console.log("reinicia el juego") }
 
+  }
+  const deshabilitarRevancha = () => {
+    setColorBtn({ colorBackgorundBtn: 'violet' });
+    setShadowBtn('')
+    setStatusBtn({ habilitado: true })
+    setOpacity('0.1')
+    setCursor('not-allowed')
   }
   const borrarSets = () => {
     setArma({ jugadorUno: "6", jugadorDos: "5", ganador: "" })
     setColor({ colorBackgorund: 'violet' })
-    setStatusBtn({ habilitado: true })
+    deshabilitarRevancha()
     habilitarBotones()
-    funcion()
+
+
 
   }
 
@@ -112,6 +120,10 @@ function Play() {
   const resultadoCombate = (arma1, arma2) => {
 
     const resultado = jugada[arma2][arma1];
+    setColorBtn({ colorBackgorundBtn: colorBgnd.colorBackgorund });
+    setOpacity('1')
+    setCursor('pointer')
+    setShadowBtn(' 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19)')
     switch (resultado) {
       case 0:
         setColor({ colorBackgorund: 'cornflowerblue' });
@@ -135,18 +147,6 @@ function Play() {
   }
 
 
-  const funcion = () => {
-    if (!open) {
-      console.log("vs", open)
-      document.getElementById("myDIV")
-      return "VS"
-    }
-    else {
-      console.log("reinicar", open)
-      return "reiniciar"
-    }
-  }
-
   return (
 
     <>
@@ -162,7 +162,14 @@ function Play() {
 
           <div className="puntaje">
 
-            <Button className="modal" onClick={() => borrarSets()}>VS</Button>
+            <button style={{
+              backgroundColor: colorBgndBtn.colorBackgorundBtn,
+              boxShadow: shadowBtn,
+              opacity: opacityBtn,
+              cursor: cursorBtn
+            }}
+              className="modal" onClick={() => borrarSets()}>REVANCHA</button>
+
 
           </div>
 

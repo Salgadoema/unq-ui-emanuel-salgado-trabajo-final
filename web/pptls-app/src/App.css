@@ -8,7 +8,38 @@
   background-color: blueviolet;
 
 }
-.btnNotFound{
+
+.contendor2 {
+  position: relative;
+  padding-bottom: 56.25%; /*panorámico*/
+  padding-top: 25px;
+  height: 0;
+}
+.contenedor2 iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 90%;
+} 
+.btnToHome{
+  display:flex;
+  justify-content: 'center';
+  align-items: 'center';
+  align-content: 'center';
+  width: 20vw;
+  height: auto;
+
+ padding:7px;
+ display: inline-block;
+ border-radius: 3px;
+ background-color:violet;
+ box-shadow:  0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+ right: 20;
+ top:90%;
+ position: fixed;
+}
+.btnNotFound {
 
   justify-content: 'center';
   align-items: 'center';
@@ -17,9 +48,10 @@
  margin-left: 40%;
  padding:10px;
  border-radius: 3px;
- background-color:rgb(82, 20, 71);
+ background-color:violet;
+ box-shadow:  0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
-.btnNotFound:hover{
+.btnNotFound:hover, .btnToHome:hover{
   cursor: pointer;
 }
 .title1{
@@ -60,16 +92,17 @@
 
 .modal{
   padding:1vw;
-  width: 4vw;
-  height: 4vw;
-  border-radius: 55%;
-  background-color: #fff;
+  width: 8vw;
+  height: 3vw;
+  border:none;
+
 
 }
+
 .algo{
   padding:50px;
 }
-.inp{
+.inp1{
   height:30px;
   border-bottom: 10px;
   padding: 5px;
@@ -77,6 +110,15 @@
   align-items: center;
   margin-bottom: 5vw;
 }
+.inp2{
+  height:30px;
+  border-bottom: 10px;
+  padding: 5px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5vw;
+}
+
 .row {
   display: flex;
 }
@@ -86,7 +128,7 @@
   width: 10vw;
   align-items: center;
 }
-.App-logo:hover{
+.App-logo:hover,.modal:hover{
   cursor: pointer;
 }
 .column {

@@ -2,6 +2,7 @@ import React from 'react';
 
 import { BrowserRouter as Router, Redirect, Switch, Route, useHistory } from 'react-router-dom';
 import Play from '../Components/Play/Play';
+import Rules from '../Components/Rules/rules';
 import App from '../App';
 import notFound from'../Static/pageNotFound.png'
 export default function Routes() {
@@ -13,6 +14,9 @@ export default function Routes() {
             </Route>
             <Route exact path="/Play">
                 <Play />
+            </Route>
+            <Route exact path="/Rules">
+                <Rules />
             </Route>
             <Route component={NoMatchPage} />
         </Switch>
@@ -30,7 +34,7 @@ const NoMatchPage = () => {
         <div className="App">
 
             <div className="pageNotFound">
-                <h1 className="pageNotFoundtxt">  Page not found  </h1>
+                <h1 className="pageNotFoundtxt"> 404 Page not found  </h1>
             <div>
                 <button className="btnNotFound" type="button" onClick={iraHome}>Back to Home</button>
             </div>
