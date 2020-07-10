@@ -89,19 +89,6 @@
 
 }
 
-
-.modal{
-  padding:1vw;
-  width: 8vw;
-  height: 3vw;
-  border:none;
-
-
-}
-
-.algo{
-  padding:50px;
-}
 .inp1{
   height:30px;
   border-bottom: 10px;
@@ -128,7 +115,7 @@
   width: 10vw;
   align-items: center;
 }
-.App-logo:hover,.modal:hover{
+.btnRevancha:hover{
   cursor: pointer;
 }
 .column {

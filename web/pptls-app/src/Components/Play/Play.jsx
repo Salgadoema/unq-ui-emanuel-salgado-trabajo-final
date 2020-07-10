@@ -168,7 +168,7 @@ function Play() {
               opacity: opacityBtn,
               cursor: cursorBtn
             }}
-              className="modal" onClick={() => borrarSets()}>REVANCHA</button>
+            className="btnRevancha" onClick={() => borrarSets()}>REVANCHA</button>
 
 
           </div>
