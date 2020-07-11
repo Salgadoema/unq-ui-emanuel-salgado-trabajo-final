@@ -5,17 +5,39 @@
 
 }
 .container{
-    position: relative;
-    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width:100%;
     height: auto;
+    text-align: center;
+
 }
 
+.puntaje1{
+    margin-right: 10vw;
+    height: auto;
 
+}
+.puntaje2{
+    margin-left: 10vw;
+    height: auto;
+
+}
 .responsive{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr ;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    height: auto;
 
-   
+}
+.puntaje{
+    display: 'flex';
+    align-items: 'center';
+    justify-Content: 'center';
+}
+.info{
+    font-size:2vw
 }
 .imgArma{
  width: 10vw;
@@ -36,4 +58,5 @@
     width: 10vw;
     height: auto;
    margin-left: 45vw;
+   
    }
