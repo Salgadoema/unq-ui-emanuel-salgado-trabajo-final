@@ -8,6 +8,7 @@ import tijera from './Static/tijera.png'
 import lagarto from './Static/lagarto.png'
 import spock from './Static/spock.png'
 import Notifications, { notify } from 'react-notify-toast';
+
 function App() {
   let history = useHistory();
   const [name, setName]=  useState("");
@@ -23,6 +24,16 @@ function App() {
       
     history.push("/Play")};
   }
+
+  function toPlay2j() {
+    localStorage.setItem('userName',name);
+    if(localStorage.getItem('userName')===""){
+      notify.show("INGRESA NOMBRE JUGADOR 1", "error", 1000, myColor)}
+    else{
+      
+    history.push("/DosJugadores")};
+  }
+
   function toRules() {
      history.push("/Rules");
   }
@@ -62,6 +73,7 @@ function App() {
                   required/>
                   
                    <button className="inp1" type="button" onClick={()=>toPlay()}  >1 Jugador</button>
+                   <button className="inp1" type="button" onClick={()=>toPlay2j()}  >2 Jugadores</button>
                    <button className="inp2" type="button" onClick={()=>toRules()}  >REGLAS</button>
                    
         </div> 

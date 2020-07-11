@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import Notifications, { notify } from 'react-notify-toast';
-import '../../Styles/Play.css';
 import piedra from '../../Static/piedra.png'
 import papel from '../../Static/papel.png'
 import tijera from '../../Static/tijera.png'
@@ -10,8 +9,9 @@ import spock from '../../Static/spock.png'
 import random from '../../Static/randomSelection.gif'
 import ninguno from '../../Static/ninguno.png'
 
+function DosJugadores () {
+  
 
-function Play() {
 
   const armas = ["piedra", "papel", "tijera", "lagarto", "spock"];
   const [contadorJug1, setContadorJ1] = useState(0)
@@ -22,55 +22,79 @@ function Play() {
   const [opacityBtn, setOpacity] = useState('0.1')
   const [cursorBtn, setCursor] = useState('not-allowed')
   const armasImg = [piedra, papel, tijera, lagarto, spock, random, ninguno]
-  const [unArma, setArma] = useState({ jugadorUno: "6", jugadorDos: "5", ganador: "" })
+  const [unArma, setArma] = useState({ jugadorUno: "6", jugadorDos: "6", ganador: "" })
+  const [armaElegida, setArmaParaMostrar] = useState({ jugadorUno: "6", jugadorDos: "6"})
   let myColor = { background: '#0E1717', text: "#FFFFFF" };
-  const [statusBtn, setStatusBtn] = useState({ habilitado: true });
+  const [statusBtn, setStatusBtn] = useState(0);
   const elegirArmaRandom = () => { return Math.floor(Math.random() * armas.length); }
 
 
   function deshabilitarBotones() {
     document.getElementById("myDIV1").style.opacity = "0.5";
+    document.getElementById("myDIV1").style.cursor = 'not-allowed';
     document.getElementById("myDIV2").style.opacity = "0.5";
+    document.getElementById("myDIV2").style.cursor = 'not-allowed';
     document.getElementById("myDIV3").style.opacity = "0.5";
+    document.getElementById("myDIV3").style.cursor = 'not-allowed';
     document.getElementById("myDIV4").style.opacity = "0.5";
+    document.getElementById("myDIV4").style.cursor = 'not-allowed';
     document.getElementById("myDIV5").style.opacity = "0.5";
+    document.getElementById("myDIV5").style.cursor = 'not-allowed';
     document.getElementById("myDIV6").style.opacity = "0.5";
+    document.getElementById("myDIV6").style.cursor = 'not-allowed';
   }
 
   function habilitarBotones() {
     document.getElementById("myDIV1").style.opacity = "1";
+    document.getElementById("myDIV1").style.cursor = 'pointer';
     document.getElementById("myDIV2").style.opacity = "1";
+    document.getElementById("myDIV2").style.cursor = 'pointer';
     document.getElementById("myDIV3").style.opacity = "1";
+    document.getElementById("myDIV3").style.cursor = 'pointer';
     document.getElementById("myDIV4").style.opacity = "1";
+    document.getElementById("myDIV4").style.cursor = 'pointer';
     document.getElementById("myDIV5").style.opacity = "1";
+    document.getElementById("myDIV5").style.cursor = 'pointer';
     document.getElementById("myDIV6").style.opacity = "1";
+    document.getElementById("myDIV6").style.cursor = 'pointer';
   }
 
 
 
   const elegirArma = (arma) => {
-
-    deshabilitarBotones();
-    if (statusBtn) {
-      setStatusBtn(false)
-      const armaJ1 = arma
-      const armaJ2 = elegirArmaRandom();
-      const ganador = resultadoCombate(armaJ1, armaJ2);
-      setArma({ jugadorUno: armaJ1, jugadorDos: armaJ2, ganador, })
-
-    }
-    else { console.log("reinicia el juego") }
-
+    switch (statusBtn) {
+        case 0:
+            setStatusBtn(statusBtn + 1)
+            setArma({jugadorUno:arma,jugadorDos:'6'})
+            
+            console.log("jugador1 eligio",unArma.jugadorUno)
+        break
+        case 1:
+            setStatusBtn({setStatusBtn:0})
+            deshabilitarBotones();
+            
+            console.log("jugador2 eligio",unArma.jugadorUno)
+            const ganador = resultadoCombate(unArma.jugadorUno, arma);
+            setArma({ jugadorUno: unArma.jugadorUno,jugadorDos: arma, ganador, })
+            setArmaParaMostrar({ jugadorUno: unArma.jugadorUno,jugadorDos: arma})
+            break
+         default:
+                console.log("statusBtn")
+        
+        }
+        
+ 
   }
   const deshabilitarRevancha = () => {
     setColorBtn({ colorBackgorundBtn: 'violet' });
     setShadowBtn('')
-    setStatusBtn({ habilitado: true })
+    setStatusBtn(0)
     setOpacity('0.1')
     setCursor('not-allowed')
   }
   const borrarSets = () => {
-    setArma({ jugadorUno: "6", jugadorDos: "5", ganador: "" })
+    setArmaParaMostrar({ jugadorUno: "6", jugadorDos: "6" })
+    setArma({ jugadorUno: "6", jugadorDos: "6", ganador: "" })
     setColor({ colorBackgorund: 'violet' })
     deshabilitarRevancha()
     habilitarBotones()
@@ -144,9 +168,9 @@ function Play() {
         setContadorJ2(contadorJug2 + 1)
         return ("PERDISTE");
         break
-      default:
-          console.log("nada")
-  
+        default:
+                console.log("nada")
+        
     }
   }
   let history = useHistory();
@@ -164,7 +188,7 @@ function Play() {
 
           <h2 className="info"> {localStorage.getItem('userName')}  {contadorJug1}Pts </h2>
 
-          <img className="imgBatalla" src={armasImg[unArma.jugadorUno]} ></img>
+          <img className="imgBatalla" src={armasImg[armaElegida.jugadorUno]} ></img>
 
 
           <div className="puntaje">
@@ -180,7 +204,7 @@ function Play() {
 
           </div>
 
-          <img className="imgBatalla" src={armasImg[unArma.jugadorDos]}></img>
+          <img className="imgBatalla" src={armasImg[armaElegida.jugadorDos]}></img>
           <h2 className="info">Computadora {contadorJug2}{armasImg.jugadorDos}Pts</h2>
         </div>
 
@@ -207,5 +231,6 @@ function Play() {
   );
 }
 
-export default Play;
 
+
+export default DosJugadores;
