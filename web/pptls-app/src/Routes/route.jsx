@@ -2,6 +2,7 @@ import React from 'react';
 
 import { BrowserRouter as Router, Redirect, Switch, Route, useHistory } from 'react-router-dom';
 import Play from '../Components/Play/Play';
+import DosJugadores from '../Components/Play/dosJugadores';
 import Rules from '../Components/Rules/rules';
 import App from '../App';
 import notFound from'../Static/pageNotFound.png'
@@ -14,6 +15,9 @@ export default function Routes() {
             </Route>
             <Route exact path="/Play">
                 <Play />
+            </Route>
+            <Route exact path="/DosJugadores">
+                <DosJugadores />
             </Route>
             <Route exact path="/Rules">
                 <Rules />
