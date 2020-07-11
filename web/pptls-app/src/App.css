@@ -66,9 +66,9 @@
 .title2{
   display: grid;
   grid-template-columns: auto;
-  font-size: 10vw;
+  font-size: 8vw;
   justify-content: center;
-  letter-spacing: 50px;
+  letter-spacing: 40px;
 }
 
 .background{
