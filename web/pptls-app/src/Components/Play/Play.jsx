@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import Notifications, { notify } from 'react-notify-toast';
 import '../../Styles/Play.css';
 import piedra from '../../Static/piedra.png'
@@ -145,7 +146,10 @@ function Play() {
         break
     }
   }
-
+  let history = useHistory();
+  function iraHome() {
+      history.push("/");
+  }
 
   return (
 
@@ -181,7 +185,7 @@ function Play() {
 
           <div className="responsive">
             <h2 className="info" >Elegi tu arma</h2>
-
+            <button className="btnToHome" type="button" onClick={iraHome}>Back to Home</button>
             <img id="myDIV1" title="PIEDRA" className="imgArma" src={armasImg[0]} onClick={() => elegirArma(0)}  ></img>
             <img id="myDIV2" title="PAPEL" className="imgArma" src={armasImg[1]} onClick={() => elegirArma(1)} ></img>
             <img id="myDIV3" title="TIJERA" className="imgArma" src={armasImg[2]} onClick={() => elegirArma(2)} ></img>
@@ -190,7 +194,7 @@ function Play() {
             <img id="myDIV6" title="RANDOM" className="imgArma" src={armasImg[5]} onClick={() => elegirArma(elegirArmaRandom())} ></img>
 
           </div>
-
+          
           <h1>{unArma.ganador}</h1>
 
         </div>
