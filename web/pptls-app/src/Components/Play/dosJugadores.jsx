@@ -9,12 +9,12 @@ import spock from '../../Static/spock.png'
 import random from '../../Static/randomSelection.gif'
 import ninguno from '../../Static/ninguno.png'
 
+
 function DosJugadores () {
   
 
-
-  const armas = ["piedra", "papel", "tijera", "lagarto", "spock"];
-  const [contadorJug1, setContadorJ1] = useState(0)
+   const armas = ["piedra", "papel", "tijera", "lagarto", "spock"];
+   const [contadorJug1, setContadorJ1] = useState(0)
   const [contadorJug2, setContadorJ2] = useState(0)
   const [colorBgndBtn, setColorBtn] = useState({ colorBackgorundBtn: 'violet' });
   const [shadowBtn, setShadowBtn] = useState('')
@@ -61,31 +61,28 @@ function DosJugadores () {
 
 
 
-  const elegirArma = (arma) => {
+  const elegirArmaAmbosJugadores = (arma) => {
+
     switch (statusBtn) {
         case 0:
             setStatusBtn(statusBtn + 1)
             setArma({jugadorUno:arma,jugadorDos:'6'})
-            
-            console.log("jugador1 eligio",unArma.jugadorUno)
         break
         case 1:
             setStatusBtn({setStatusBtn:0})
             deshabilitarBotones();
-            
-            console.log("jugador2 eligio",unArma.jugadorUno)
             const ganador = resultadoCombate(unArma.jugadorUno, arma);
-            setArma({ jugadorUno: unArma.jugadorUno,jugadorDos: arma, ganador, })
+            setArma({ jugadorUno: unArma.jugadorUno,jugadorDos: arma, ganador })
             setArmaParaMostrar({ jugadorUno: unArma.jugadorUno,jugadorDos: arma})
             break
          default:
-                console.log("statusBtn")
+            notify.show ("TOCA REVANCHA PARA JUGAR OTRA PARTIDA","warning",2000,'RED')
+            break
         
         }
-        
+    } 
  
-  }
-  const deshabilitarRevancha = () => {
+    const deshabilitarRevancha = () => {
     setColorBtn({ colorBackgorundBtn: 'violet' });
     setShadowBtn('')
     setStatusBtn(0)
@@ -141,88 +138,96 @@ function DosJugadores () {
       [2, 1, 2, 1, 0]
     ];
 
+    function resultadoCombate  (arma1, arma2)  {
 
-  const resultadoCombate = (arma1, arma2) => {
+        const resultado = jugada[arma2][arma1];
+        setColorBtn({ colorBackgorundBtn: colorBgnd.colorBackgorund });
+        setOpacity('1')
+        setCursor('pointer')
+        setShadowBtn(' 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19)')
+        switch (resultado) {
+          case 0:
+            setColor({ colorBackgorund: 'cornflowerblue' });
+            notify.show("EMPATARON", "info", 2000, myColor);
 
-    const resultado = jugada[arma2][arma1];
-    setColorBtn({ colorBackgorundBtn: colorBgnd.colorBackgorund });
-    setOpacity('1')
-    setCursor('pointer')
-    setShadowBtn(' 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19)')
-    switch (resultado) {
-      case 0:
-        setColor({ colorBackgorund: 'cornflowerblue' });
-        notify.show("EMPATE", "info", 1000, myColor);
-        return ("EMPATE");
-        break
+            break
+          case 1:
+            setColor({ colorBackgorund: 'green' });
+            notify.show('Gano '+localStorage.getItem('userName'), "success", 2000, myColor);
+            setContadorJ1(contadorJug1 + 1)
 
-      case 1:
-        setColor({ colorBackgorund: 'green' });
-        notify.show("GANASTE", "success", 1000, myColor);
-        setContadorJ1(contadorJug1 + 1)
-        return ("GANASTE");
-        break
-      case 2:
-        setColor({ colorBackgorund: 'red' });
-        notify.show("PERDISTE", "error", 1000, myColor);
-        setContadorJ2(contadorJug2 + 1)
-        return ("PERDISTE");
-        break
-        default:
-                console.log("nada")
-        
-    }
-  }
+            break
+          case 2:
+            setColor({ colorBackgorund: 'red' });
+            notify.show('GANO '+localStorage.getItem('userName2'), "error", 2000, myColor);
+            setContadorJ2(contadorJug2 + 1)
+            break
+            default:
+              break
+      
+        }
+      }
+
+
+function restarCount(){
+    setContadorJ1(0)
+    setContadorJ2(0)
+}
+  
   let history = useHistory();
   function iraHome() {
       history.push("/");
   }
+  function turnoJugador(){
+    switch (statusBtn) {
+        case 0:
+      
+            return (localStorage.getItem('userName'));
+        case 1:
+         
+            return (localStorage.getItem('userName2'));
+            
+         default:
+               break
+        
+        }
+  }/**/
 
   return (
 
     <>
+    <Notifications />
       <div className="container" style={{ backgroundColor: colorBgnd.colorBackgorund }} >
-        <Notifications />
+      <h3>2 JUGADORES </h3>
         <div className="batalla">
-
-
-          <h2 className="info"> {localStorage.getItem('userName')}  {contadorJug1}Pts </h2>
-
-          <img className="imgBatalla" src={armasImg[armaElegida.jugadorUno]} ></img>
-
-
-          <div className="puntaje">
-
-            <button style={{
-              backgroundColor: colorBgndBtn.colorBackgorundBtn,
-              boxShadow: shadowBtn,
-              opacity: opacityBtn,
-              cursor: cursorBtn
-            }}
-            className="btnRevancha" onClick={() => borrarSets()}>REVANCHA</button>
-
-
+           <h2 className="info"> {localStorage.getItem('userName')}  {contadorJug1}Pts </h2>
+           <img alt= "arma elegida" className="imgBatalla" src={armasImg[armaElegida.jugadorUno]} ></img>
+            <div className="puntaje">
+                <button 
+                    style={{
+                        backgroundColor: colorBgndBtn.colorBackgorundBtn,
+                        boxShadow: shadowBtn,
+                        opacity: opacityBtn,
+                        cursor: cursorBtn}}
+                    className="btnRevancha" 
+                    onClick={() => borrarSets()}>REVANCHA
+                </button>
+           </div>
+           <img className="imgBatalla" alt="arma jugador 2" src={armasImg[armaElegida.jugadorDos]}></img>
+           <h2 className="info"> {localStorage.getItem('userName2')} {contadorJug2}{armasImg.jugadorDos}Pts</h2>
+      </div>
+      <div className="containerBtn">
+            <div className="responsive">
+                <h2 className="info" >Elegi tu arma  <br/> {turnoJugador()}</h2>
+                <button className="btnToHome_" type="button" onClick={iraHome}>{'<'} VOLVER</button>
+                <button className="restart" type="button"onClick={restarCount} > RESTABLECER PUNTAJE</button>
+                <img id="myDIV1" alt="PIEDRA" title="PIEDRA" className="imgArma" src={armasImg[0]} onClick={() => elegirArmaAmbosJugadores(0)}  ></img>
+                <img id="myDIV2" alt="PAPEL" title="PAPEL" className="imgArma" src={armasImg[1]} onClick={() => elegirArmaAmbosJugadores(1)} ></img>
+                <img id="myDIV3" alt="TIJERA" title="TIJERA" className="imgArma" src={armasImg[2]} onClick={() => elegirArmaAmbosJugadores(2)} ></img>
+                <img id="myDIV4" alt="LAGARTO" title="LAGARTO" className="imgArma" src={armasImg[3]} onClick={() => elegirArmaAmbosJugadores(3)} ></img>
+                <img id="myDIV5" alt="SPOCK" title="SPOCK" className="imgArma" src={armasImg[4]} onClick={() => elegirArmaAmbosJugadores(4)} ></img>
+                <img id="myDIV6" alt="RANDOM" title="RANDOM" className="imgArma" src={armasImg[5]} onClick={() => elegirArmaAmbosJugadores(elegirArmaRandom())} ></img>
           </div>
-
-          <img className="imgBatalla" src={armasImg[armaElegida.jugadorDos]}></img>
-          <h2 className="info">Computadora {contadorJug2}{armasImg.jugadorDos}Pts</h2>
-        </div>
-
-        <div className="containerBtn">
-
-          <div className="responsive">
-            <h2 className="info" >Elegi tu arma</h2>
-            <button className="btnToHome" type="button" onClick={iraHome}>Back to Home</button>
-            <img id="myDIV1" title="PIEDRA" className="imgArma" src={armasImg[0]} onClick={() => elegirArma(0)}  ></img>
-            <img id="myDIV2" title="PAPEL" className="imgArma" src={armasImg[1]} onClick={() => elegirArma(1)} ></img>
-            <img id="myDIV3" title="TIJERA" className="imgArma" src={armasImg[2]} onClick={() => elegirArma(2)} ></img>
-            <img id="myDIV4" title="LAGARTO" className="imgArma" src={armasImg[3]} onClick={() => elegirArma(3)} ></img>
-            <img id="myDIV5" title="SPOCK" className="imgArma" src={armasImg[4]} onClick={() => elegirArma(4)} ></img>
-            <img id="myDIV6" title="RANDOM" className="imgArma" src={armasImg[5]} onClick={() => elegirArma(elegirArmaRandom())} ></img>
-
-          </div>
-          
-          <h1>{unArma.ganador}</h1>
 
         </div>
       </div>
@@ -230,7 +235,5 @@ function DosJugadores () {
     </>
   );
 }
-
-
 
 export default DosJugadores;
